@@ -1,6 +1,17 @@
+/*
+ * Author: Akhilesh Gowrishetty
+ * Date  : 14-01-2020
+ * 
+ * Controlling RC Car with FlySky CT6B Transmitter and Receiver.
+ * Code can be modified for the motors to run at variable speed by Replacing "HIGH" in functions to "value".
+ * 
+ * PWM Values have to be modified according to the values obtained from PWM_Serial.ino
+ * 
+ */
+
 #include <Servo.h>
 
-int ch2=13,ch1=12,ch5=8; // ch2(pin13) - forward&backard  ch1(pin12) - turning left&right  ch5(pin8) - gripper(servo)
+int ch2=13,ch1=12,ch5=8; // ch2(pin13) - forward&backard(throttle)  ch1(pin12) - turning left&right(roll)  ch5(pin8) - gripper(servo)(knob)
 
 unsigned long t_ch1,t_ch2,t_ch5; // timers for pwm signals from TX
 
@@ -84,7 +95,7 @@ void gripper(unsigned long val)
 
 void loop()
 {
-  // put your main code here, to run repeatedly:
+ 
   t_ch1=pulseIn(ch1,HIGH);
   t_ch2=pulseIn(ch2,HIGH);
   t_ch5=pulseIn(ch5,HIGH);
